@@ -1,22 +1,22 @@
 <div class="image-details">
     <div class="image-details_header">
-        <h1 mat-dialog-title>Detalles de la Imagen</h1>
-        <button mat-icon-button (click)="onClose()">
-            <mat-icon>clear</mat-icon>
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
         </button>
+        <h1 mat-dialog-title>Detalles de la Imagen</h1>
     </div>
     <mat-dialog-content class="image-details_content">
         <div>
-            <p class="image-details_username">{{data.user.username}}</p>
-            <p *ngIf="data.user.location != null">{{data.user.location}}</p>
+            <p class="image-details_username">{{data?.user?.username}}</p>
+            <p >{{data?.user?.location}}</p>
         </div>
-        <img class="image-details_image" [src]="data.urls.small">
+        <img class="image-details_image" [src]="data?.urls?.small">
         <div class="image-details_row">
             <div class="image-details_likesrow">
                 <button mat-icon-button disabled>
                     <mat-icon>favorite</mat-icon>
                 </button>
-                <p class="image-details_likes">{{data.likes}}</p>
+                <p class="image-details_likes">{{data?.likes}}</p>
             </div>
             <button mat-icon-button (click)="togglePanel()" 
                     matTooltip="Estadísticas de los últimos 30 días" matTooltipPosition="above">
@@ -41,6 +41,6 @@
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
-        <p *ngIf="data.description != null">{{data.description}}</p>
+        <p>{{data?.description}}</p>
     </mat-dialog-content>
 </div>

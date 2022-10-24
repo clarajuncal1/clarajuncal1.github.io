@@ -22,6 +22,10 @@ export class UnsplashApiService {
     return this.http.get<images[]>(`${environment.url_base}photos/?query=${query}`);
   }
 
+  getPhotoById(id: string): Observable<images> {
+    return this.http.get<images>(`${environment.url_base}photos/${id}`);
+  }
+
   getPhotosByQuery(query: string, page: Page = {page:1, per_page:10}): Observable<ImagesCollection<images>> {
     return this.http.get<ImagesCollection<images>>(`${environment.url_base}search/photos?query=${query}&page=${page.page}&per_page=${page.per_page}`);
   }

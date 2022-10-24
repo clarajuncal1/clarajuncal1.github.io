@@ -2,7 +2,6 @@
     &_header {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
     }
 
@@ -35,7 +34,7 @@
     }
 
     &_image {
-        width: 50%;
+        width: 25%;
         align-self: center;
     }
 

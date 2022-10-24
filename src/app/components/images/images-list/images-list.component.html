@@ -18,7 +18,7 @@
                     <img class="image-grid-list"
                         [src]="item.urls.small"
                         [alt]="item.alt_description"
-                        (click)="openImageDetails(item)">
+                        routerLink="/{{item.id}}">
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>

@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '', 
+    loadChildren: () => import('./components/images/images.module').then(module => module.ImagesModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

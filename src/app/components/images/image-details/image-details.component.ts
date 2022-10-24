@@ -1,9 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 import { ImageStatistics } from 'src/app/models/image-statistics';
 import { images } from 'src/app/models/images';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-image-details',
@@ -16,30 +18,36 @@ export class ImageDetailsComponent implements OnInit {
   likes: number = 0;
   panelOpenState: boolean = false;
 
+  data: any;
+
   subscription$ = new Subscription();
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: images,
-              public dialogRef: MatDialogRef<ImageDetailsComponent>,
-              private unsplashApiService: UnsplashApiService) { }
+  constructor(private unsplashApiService: UnsplashApiService,
+    private route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit(): void {
-    this.subscription$.add(
-      this.unsplashApiService.getPhotoStatistics(this.data.id).subscribe(
+    const id = this.route.snapshot.paramMap.get('id');
+      this.unsplashApiService.getPhotoStatistics(id ?? '').subscribe(
         (statistics: ImageStatistics) => {
           this.downloads = statistics.downloads.total;
           this.views = statistics.views.total;
           this.likes = statistics.likes.total;
         }
       )
-    );
+      this.unsplashApiService.getPhotoById(id ?? '').subscribe(
+        image => {
+          this.data = image;
+        }
+      )
   }
 
-  togglePanel() {
+  togglePanel(): void {
       this.panelOpenState = !this.panelOpenState
   }
 
-  onClose(): void {
-    this.dialogRef.close();
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnDestroy(): void {
