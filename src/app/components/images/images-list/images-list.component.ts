@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 import { images } from 'src/app/models/images';
 import { MatDialog } from '@angular/material/dialog';
-import { ImageDetailsComponent } from '../image-details/image-details.component';
+import { ImageDetailsComponent } from 'src/app/components/images/image-details/image-details.component';
 import { User } from 'src/app/models/user';
-import { UserDetailsComponent } from '../../user-details/user-details.component';
+import { UserDetailsComponent } from 'src/app/components/user-details/user-details.component';
 
 
 @Component({
@@ -16,18 +16,18 @@ import { UserDetailsComponent } from '../../user-details/user-details.component'
 export class ImagesListComponent implements OnInit {
 
   imagesList: images[] = [];
-  paginatedList: images[] = [];
-  columns = 3;
-  pageNumber = 1;
-  pageSize = 10;
-  query = '';
-  totalPages = 10;
+
+  columns: number = 3;
+  pageNumber:number = 1;
+  pageSize:number = 10;
+
+  query: string = '';
   newQuery: boolean = true;
 
   subscription$ = new Subscription();
 
   constructor(private unsplashApiService: UnsplashApiService,
-    private dialog: MatDialog) { }
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getImages();
@@ -43,44 +43,53 @@ export class ImagesListComponent implements OnInit {
 
   getImagesByQuery(query: string) {
     this.query = query;
-    this.unsplashApiService.getPhotosByQuery(query, { page: this.pageNumber, per_page: this.pageSize })
+    this.subscription$.add(
+      this.unsplashApiService.getPhotosByQuery(query, { page: this.pageNumber, per_page: this.pageSize })
       .subscribe(data => 
           data.results.forEach(element => this.imagesList.push(element))
-      );
+      )
+    );
   }
 
   getImagesWithoutQuery() {
-    this.unsplashApiService.getPhotosList({ page: this.pageNumber, per_page: this.pageSize })
+    this.subscription$.add(
+      this.unsplashApiService.getPhotosList({ page: 1, per_page: 10 })
       .subscribe(data => 
         data.forEach(element => this.imagesList.push(element))
-      );
+      )
+    )
   }
 
   public getImages(query?: string) {
     if (this.newQuery) {
       this.imagesList = [];
+      this.pageNumber = 1;
     }
 
     if (query) {
       this.newQuery = false;
-      return this.getImagesByQuery(query);
+      this.getImagesByQuery(query);
     }
-      return this.getImagesWithoutQuery();
+    else {
+      this.getImagesWithoutQuery();
+    }
   }
 
   public clearSearch(cancel: boolean): void {
     if (cancel) {
+      this.newQuery = true;
       this.imagesList = [];
       this.getImages('');
     }
   }
 
   loadImages() {
-    this.pageNumber++;
+    //the if should check if <= total_page number returned in the images collection
     if (!this.newQuery) {
-      if (this.pageNumber <= this.totalPages) {
+      this.pageNumber++;
+      if (this.pageNumber <= 8) {
         this.getImages(this.query);
-      }
+      } 
     }
   }
 

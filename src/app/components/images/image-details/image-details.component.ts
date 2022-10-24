@@ -1,7 +1,6 @@
-import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 import { ImageStatistics } from 'src/app/models/image-statistics';
 import { images } from 'src/app/models/images';

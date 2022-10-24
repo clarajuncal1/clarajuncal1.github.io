@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 import { User } from 'src/app/models/user';
 
@@ -11,17 +12,20 @@ import { User } from 'src/app/models/user';
 })
 export class UserDetailsComponent implements OnInit {
 
+  subscription$ = new Subscription();
+
   constructor(@Inject(MAT_DIALOG_DATA) public user: User,
           public dialogRef: MatDialogRef<UserDetailsComponent>,
           private unsplashApiService: UnsplashApiService) { }
 
   ngOnInit(): void {
-    this.unsplashApiService.getUserData(this.user.username).subscribe(data => this.user = data);
-    console.log(this.user);
+    this.subscription$.add(
+      this.unsplashApiService.getUserData(this.user.username).subscribe(data => this.user = data)
+    );
   }
 
-  onClose(): void {
-    this.dialogRef.close();
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe()
   }
 
 }

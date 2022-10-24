@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { images } from '../models/images';
 import { environment } from 'src/environments/environment';
 import { Page } from '../models/pages';
@@ -17,7 +17,7 @@ export class UnsplashApiService {
     console.log('Servicio Http:')
   }
 
-  getPhotosList(page: Page = {page:1, per_page:20}): Observable<images[]> {
+  getPhotosList(page: Page = {page:1, per_page:10}): Observable<images[]> {
     let query = `?page=${page.page}&per_page=${page.per_page}`;
     return this.http.get<images[]>(`${environment.url_base}photos/?query=${query}`);
   }

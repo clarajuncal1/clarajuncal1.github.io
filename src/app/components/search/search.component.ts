@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { debounce, debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class SearchComponent {
   }
 
   search() : void {
-    console.log(this.searchText.value);
     this.searchEvent.emit(this.searchText.value!);
   }
 
