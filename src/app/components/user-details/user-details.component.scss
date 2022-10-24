@@ -1,0 +1,44 @@
+.user-details {
+    &__header {
+        display: flex;
+    }
+
+    &__img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    &__follow {
+        display: flex;
+        margin-left: 1rem;
+        align-items: center;
+
+        &_column {
+            display: flex;
+            flex-direction: column;
+            margin: 0 1rem;
+            align-items: center;
+        }
+    }
+
+    &__number {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    &__data {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 1rem;
+
+        &_row {
+            display: flex;
+        }
+    }
+}

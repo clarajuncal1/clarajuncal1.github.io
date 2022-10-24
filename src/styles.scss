@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-dialog-title {
+    margin: 0;
+}
+
+.mat-dialog-content {
+    padding: 1.5rem !important;
+}
+
+.mat-typography p {
+    margin: 0 !important
+}
+
+.mat-typography h1 {
+    margin: 0;
+}
+
+.mat-typography h2 {
+    margin: 0.5rem 0 0.5rem;
+}
+
+.mat-icon-button {
+    &:-webkit-tap-highlight-color{
+        background-color: #fff;
+    }
+}
+
+.mat-expansion-panel-body {
+    padding: 0 1.5rem !important;
+}

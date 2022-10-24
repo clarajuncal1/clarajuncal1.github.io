@@ -1,0 +1,10 @@
+<div class="images-search">
+    <input class="images-search__input" matInput type="text"
+        placeholder="Introduce un filtro para la búsqueda" [formControl]="searchText">
+    <button (click)="search()" mat-icon-button>
+        <mat-icon>send</mat-icon>
+    </button>
+    <button (click)="cancelSearch()" mat-icon-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

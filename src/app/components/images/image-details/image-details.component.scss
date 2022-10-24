@@ -1,0 +1,46 @@
+.image-details {
+    &_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &_content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_likesrow {
+        display: flex;
+        align-items: center;
+    }
+
+    &_username {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 0.5rem !important;
+    }
+
+    &_likes {
+        margin-left: 4px;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+
+    &_image {
+        width: 50%;
+        align-self: center;
+    }
+
+    &_list {
+        display: flex;
+        justify-content: space-around;
+    }
+}

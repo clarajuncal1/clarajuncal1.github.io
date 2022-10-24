@@ -1,0 +1,60 @@
+.images-search {
+    width: 70%;
+    padding: 0 0 1.5rem 1.5rem;
+    justify-content: center;
+    display: flex;
+
+    &_button {
+        margin-left: 1.5rem;
+        border-radius: 1.5rem;
+        padding: 0.125rem;
+    }
+}
+
+.no-images {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.image-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.div-grid-scroll{
+    height: 700px;
+    overflow: scroll;
+}
+
+.avatar {
+    background-repeat: no-repeat;
+    background-size: cover;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.image-card {
+    margin-bottom: 1rem;
+    width: 80%;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+}
+
+mat-card {
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 80%;
+      margin: 0 auto;
+      height: 25vh;
+      cursor: pointer;
+    }
+}

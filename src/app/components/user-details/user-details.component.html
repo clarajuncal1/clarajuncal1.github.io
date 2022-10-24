@@ -1,0 +1,37 @@
+<div class="user-details">
+    <div class="user-details__header">
+        <img class="user-details__img" [src]="user.profile_image.small">
+        <div class="user-details__follow">
+            <div class="user-details__follow_column">
+                <p class="user-details__number">{{user.followers_count}}</p>
+                <p class="user-details__data">Seguidores</p>
+            </div>
+            <div class="user-details__follow_column">
+                <p class="user-details__number">{{user.following_count}}</p>
+                <p class="user-details__data">Siguiendo</p>
+            </div>
+            <div class="user-details__follow_column">
+                <p class="user-details__number">{{user.downloads}}</p>
+                <p class="user-details__data">Descargas</p>
+            </div>
+        </div>
+    </div>
+    <h2 class="user-details__name">{{user.name}}</h2>
+    <span class="user-details__description">{{user.bio}}</span>
+
+    <div class="user-details__content">
+        <div class="user-details__content_row">
+            <p>Imágenes</p>
+            <span [matBadge]="user.total_photos" matBadgeOverlap="false"></span>
+        </div>
+        <div class="user-details__content_row">
+            <p>Me gusta</p>
+            <span [matBadge]="user.total_likes" matBadgeOverlap="false"></span>
+        </div>
+        <div class="user-details__content_row">
+            <p>Colecciones</p>
+            <span [matBadge]="user.total_collections" matBadgeOverlap="false"></span>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="image-details">
+    <div class="image-details_header">
+        <h1 mat-dialog-title>Detalles de la Imagen</h1>
+        <button mat-icon-button (click)="onClose()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content class="image-details_content">
+        <div>
+            <p class="image-details_username">{{data.user.username}}</p>
+            <p *ngIf="data.user.location != null">{{data.user.location}}</p>
+        </div>
+        <img class="image-details_image" [src]="data.urls.small">
+        <div class="image-details_row">
+            <div class="image-details_likesrow">
+                <button mat-icon-button disabled>
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <p class="image-details_likes">{{data.likes}}</p>
+            </div>
+            <button mat-icon-button (click)="togglePanel()" 
+                    matTooltip="Estadísticas de los últimos 30 días" matTooltipPosition="above">
+                <mat-icon>poll</mat-icon>
+            </button>
+        </div>
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="panelOpenState">
+                <div class="image-details_list">
+                    <div class="image-details_row">
+                        <button mat-icon-button disabled><mat-icon>favorite</mat-icon></button>
+                        <p>{{likes}}</p>
+                    </div>
+                    <div class="image-details_row">
+                        <button mat-icon-button disabled><mat-icon>vertical_align_bottom</mat-icon></button>
+                        <p>{{downloads}}</p>
+                    </div>
+                    <div class="image-details_row">
+                        <button mat-icon-button disabled><mat-icon>remove_red_eye</mat-icon></button>
+                        <p>{{views}}</p>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <p *ngIf="data.description != null">{{data.description}}</p>
+    </mat-dialog-content>
+</div>
