@@ -13,9 +13,6 @@ import { ImagesRoutingModule } from './images-routing.module';
     ImagesListComponent,
     ImageDetailsComponent
   ],
-  // entryComponents: [
-  //   ImageDetailsComponent,
-  // ],
   imports: [
     CommonModule,
     MaterialSharedModule,

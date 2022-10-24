@@ -3,6 +3,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin: 1rem 0 0 1rem;
     }
 
     &_content {
@@ -43,4 +44,8 @@
         display: flex;
         justify-content: space-around;
     }
+}
+
+mat-accordion {
+    margin-bottom: 1rem;
 }

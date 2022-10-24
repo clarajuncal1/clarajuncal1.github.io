@@ -26,6 +26,7 @@ export class ImageDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.subscription$.add(
       this.unsplashApiService.getPhotoStatistics(id ?? '').subscribe(
         (statistics: ImageStatistics) => {
           this.downloads = statistics.downloads.total;
@@ -33,11 +34,14 @@ export class ImageDetailsComponent implements OnInit {
           this.likes = statistics.likes.total;
         }
       )
+    )
+    this.subscription$.add(
       this.unsplashApiService.getPhotoById(id ?? '').subscribe(
         image => {
           this.data = image;
         }
       )
+    )
   }
 
   togglePanel(): void {
