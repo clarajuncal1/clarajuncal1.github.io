@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error.status !== 200) {
-                    console.log(`${error.status}`);
+                    console.error(`${error.status}`);
                 }
                 return throwError(error);
             })

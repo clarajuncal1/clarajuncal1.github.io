@@ -4,8 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UnsplashApiService } from 'src/app/api/unsplash-api.service';
 import { ImageStatistics } from 'src/app/models/image-statistics';
-import { images } from 'src/app/models/images';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-image-details',
